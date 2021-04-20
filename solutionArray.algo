@@ -1,0 +1,121 @@
+//the sum of all distinct elements Solution1
+ALGORITHM sumDistinctElements
+VAR
+    set1 : ARRAY_OF INTEGER[];
+    set2 : ARRAY_OF INTEGER[];
+    i : INTEGER;
+    j : INTEGER;
+    sumDis : INTEGER;
+BEGIN
+
+    write ("give set1 :");
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        read(set1);
+    END_FOR
+
+    write ("give set2 :");
+    FOR i FROM 0 TO set2.length-1 STEP 1  DO
+        read(set2);
+    END_FOR
+
+    sumDis:=0;
+
+    IF (set1.length >= set2.length) THEN
+
+        FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+            IF (set1[i]<> set2[j]) THEN
+                sumDis :=sumDis+ set1[i];
+            END_IF
+        END_FOR
+            
+        END_FOR
+    ELSE
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+        FOR i FROM 0 TO set1.length-1 STEP 1  DO
+            IF (set2[j]<> set1[i]) THEN
+                sumDis :=sumDis+ set2[j];
+            END_IF
+        END_FOR
+            
+        END_FOR
+    END_IF
+    write(sumDis);
+END
+
+//the sum of overlapping elements Solution1
+ALGORITHM sumOverlappingElements
+VAR
+    set1 : ARRAY_OF INTEGER[];
+    set2 : ARRAY_OF INTEGER[];
+    i : INTEGER;
+    j : INTEGER;
+    sumOv : INTEGER;
+BEGIN
+    write ("give set1 :");
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        read(set1);
+    END_FOR
+
+    write ("give set2 :");
+    FOR i FROM 0 TO set2.length-1 STEP 1  DO
+        read(set2);
+    END_FOR
+
+    sumOv:=0;
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+            IF (set1[i] = set2[j]) THEN
+                sumOv :=sumOv+ set1[i];
+            END_IF
+        END_FOR
+            
+        END_FOR
+        write(sumOv);
+END
+
+//other  Solution 1
+ALGORITHM sumDistincANDsumOverlappingElements
+VAR
+    set1 : ARRAY_OF INTEGER[];
+    set2 : ARRAY_OF INTEGER[];
+    i : INTEGER;
+    j : INTEGER;
+    sumOv : INTEGER;
+    sumDis : INTEGER;
+    sum : INTEGER;
+BEGIN
+    write ("give set1 :");
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        read(set1);
+    END_FOR
+
+    write ("give set2 :");
+    FOR i FROM 0 TO set2.length-1 STEP 1  DO
+        read(set2);
+    END_FOR
+
+    sumOv:=0;
+    sumDis:=0;
+    sum:=0;
+
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+                sum :=sum + set1[i] + set2[j];
+        END_FOR
+            
+        END_FOR
+
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        FOR j FROM 0 TO set2.length-1 STEP 1  DO
+            IF (set1[i] = set2[j]) THEN
+                sumOv :=sumOv+ set1[i];
+            END_IF
+        END_FOR
+            
+        END_FOR
+        
+        sumDis := sum - sumOv ;
+        write(sumOv);
+        write(sumDis);
+END

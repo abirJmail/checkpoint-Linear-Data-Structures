@@ -1,0 +1,46 @@
+ALGORITHM algorithm_name
+VAR
+    htab: HASH_TABLE<INTEGER,INTEGER>;
+    set1 : ARRAY_OF INTEGER[];
+    set2 : ARRAY_OF INTEGER[];
+    set : ARRAY_OF INTEGER[];
+    i : INTEGER;
+    count : INTEGER;
+    
+BEGIN
+    write ("give set1 :");
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        read(set1);
+    END_FOR
+
+    write ("give set2 :");
+    FOR i FROM 0 TO set2.length-1 STEP 1  DO
+        read(set2);
+    END_FOR
+
+    FOR i FROM 0 TO set1.length-1 STEP 1  DO
+        set[i]:= set1[i];
+    END_FOR
+    FOR i FROM set1.length TO set2.length-1 STEP 1  DO
+        set[i]:= set2[i];
+    END_FOR
+
+    FOR i FROM 0 TO str.length-1 STEP 1  DO
+        IF (htab.lookup(str[i]) = TRUE) THEN
+            count := htab.get(set[i]);
+            htab.insert(set[i],count+1);
+        ELSE
+            htab.insert(set[i],1);
+        END_IF
+    END_FOR
+    FOR i FROM 0 TO set.length-1 STEP 1  DO
+        IF (htab.get(set[i]) = 2) THEN
+            sumOv:= sumOv+set[i]*2;
+        ELSE_IF (htab.get(set[i]) = 1 ) THEN
+            sumDis :=sumDis+set[i];
+    END_IF
+    END_FOR
+
+    Write(sumDis);
+    Write(sumOv);
+END
